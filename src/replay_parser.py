@@ -124,6 +124,7 @@ def extractStreams(pcap_file, follow_folder, client_ip, protocol, UDPstreamsMap=
     noRetransmitPcap = pcap_file.rpartition('.')[0]+'_no_retransmits.pcap'
 #     command          = 'tshark -2 -R "not tcp.analysis.retransmission" -r {} -w {}'.format(pcap_file, noRetransmitPcap)
     command          = 'tshark -2 -R "not tcp.analysis.retransmission && not tcp.analysis.out_of_order" -r {} -w {}'.format(pcap_file, noRetransmitPcap)
+    #print(command)
     os.system(command)
     
     if protocol == 'tcp':
@@ -132,12 +133,14 @@ def extractStreams(pcap_file, follow_folder, client_ip, protocol, UDPstreamsMap=
                    "follow_folder='" + follow_folder + "'\n" +
                    "END=$(tshark -r $PCAP_FILE_noRe -T fields -e " + protocol + ".stream | sort -n | tail -1)\n" +
                    "echo '\tNumber of streams: '$END+1\n\n" +
-                   "for ((i=0;i<=END;i++))\n" +
+		   "echo '\t'$END\n"+
+                   "for i in $(seq 0 $END);\n" +
                    "do\n" +
                     "\techo '\tDoing TCP stream: '$i\n" +
                     "\ttshark -r $PCAP_FILE_noRe -qz follow," + protocol + ",raw,$i > $follow_folder/follow-stream-$i.txt\n" +
                    "done"
                   )
+	#print(command)
         os.system(command)
         
     elif protocol == 'udp':
@@ -577,7 +580,11 @@ def run(*args):
     
     '''##########################################################'''
     PRINT_ACTION('Locating necessary files', 0)
+    pcap_file = ""
+    client_ip_file =""
     for file in os.listdir(configs.get('pcap_folder')):
+#	print(file)
+#	print(configs.get('pcap_folder'))
         if file.endswith('.pcap'):
             if file.endswith('_no_retransmits.pcap'):
                 continue
@@ -745,7 +752,8 @@ def run(*args):
             streamSkippedList.append(stream)
             print '\t\tStream in ignore list, skipping'
             continue
-        
+        #print(tcpMetas['0'])
+	#print(handles)
         [TMPclientQ, TMPserverQ, csp] = tcpStream2Qs(tcpMetas[stream], handles['tcp'][stream])
 
 

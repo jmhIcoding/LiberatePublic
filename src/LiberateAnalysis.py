@@ -148,6 +148,7 @@ def GetMeta(PcapDirectory, numPackets, client_ip):
     # There should only be one protocol that is in the pcap
     # Thus the one with an csp in it
     Prot = 'tcp'
+    print(serverQ)
     for P in serverQ.keys():
         if serverQ[P] != {}:
             Prot = P

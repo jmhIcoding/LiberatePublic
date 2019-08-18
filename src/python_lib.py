@@ -387,6 +387,7 @@ class Instance(object):
         self.ips = {
                     'replay'                : '0.0.0.0',
                     'replay-test-2'         : 'replay-test-2.meddle.mobi',
+		    'server1':'47.254.71.134'
                    }
     def getIP(self, machineName):
         ip = socket.gethostbyname( self.ips[machineName] )
