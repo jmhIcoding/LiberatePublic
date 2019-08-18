@@ -262,7 +262,7 @@ def main():
                             'debug': True,
                             }
     
-    application.listen(configs.get('analyzerPort'),address=configs.get('analyzerAddress'))
+    application.listen(configs.get('analyzerPort'),address="0.0.0.0")
     
     tornado.ioloop.IOLoop.instance().start()
 
