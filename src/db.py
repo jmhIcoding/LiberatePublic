@@ -14,9 +14,9 @@ class DB(object):
         
         if self.dbLocation == 'local':
             self.host   = 'localhost'
-            self.user   = Configs().get('dbUser')
-            self.pw     = Configs().get('dbPassword')
-            self.dbName = Configs().get('dbName')
+            self.user   = str(Configs().get('dbUser'))
+            self.pw     = str(Configs().get('dbPassword'))
+            self.dbName = str(Configs().get('dbName'))
         else:
             raise Exception('Unknown MySQL Connect information!!!!\n')
         self._connect()
