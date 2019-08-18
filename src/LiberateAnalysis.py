@@ -599,7 +599,7 @@ def main(args):
     splitCodes['udp'] = IPsplitCodes + ['UDPr']
 
     # All the configurations used
-    configs = Configs()
+    configs = {}
     configs = setUpConfig(configs)
     configs = Configs()
 
