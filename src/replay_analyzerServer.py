@@ -145,6 +145,9 @@ def getHandler(args):
         try:
             # provide raw result to the client, let client decide whether differentiation,
             # give flexibility in setting parameters
+            print(type(db))
+            print(userID,historyCount,testID)
+
             response = db.getSingleResult(userID, historyCount, testID)
             # response = processResult(response)
             # Should only be one result since unique (userID, historyCount, testID)
