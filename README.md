@@ -7,6 +7,8 @@ Only supports linux machine so far.
 
 Before running:
 
+* USE python 2.x!!!!!!!!! *
+
 * Install Scapy http://www.secdev.org/projects/scapy/
 ```
 pip2 install --pre scapy[basic]
@@ -29,7 +31,23 @@ sudo apt-get install wireshark tshark
 pip2 install numpy==1.6
 ```
 
-* Install po
+* Install tornado(For Server)
+
+```
+pip2 install tornado
+```
+
+* Install MySQLDB(For Server)
+```
+apt-get install mysql-server mysql-client libmysqlclient-dev
+pip install MySQLdb-python
+```
+* Install other Software (For Server)
+```
+pip install matplotlib==2.2.3
+
+```
+You should set the mysql database connection string consistent with the parameters of your configs_local.cfg, such as dbUser,dbPassword,dbName
 
 * Have your own replay server ready (different machine than the client machine in order for your traffic to travel through the tested network). Then in python_lib.py, add your own server name and IP address pair in the class Instance (e.g. server1 and 1.2.3.4).
 
@@ -53,6 +71,7 @@ The first command is to parse the replay, and the second one is to create a repl
 ```
 python replay_paser.py --pcap_folder=/the/path/to/pcap
 ```
+
 ```
 python replay_paser.py --pcap_folder=/the/path/to/pcap --randomPayload=True --pureRandom=True
 ```
@@ -76,6 +95,7 @@ On server side:
 * First you need to provide the paths to the record replays into the folders.txt file. For example, make it a single line file with '/path/to/Youtube'
 
 ```
+sudo python replay_analyzerServer.py --port=56565 --ConfigFile=configs_local.cfg &
 sudo python replay_server.py --ConfigFile=configs_local.cfg 
 ```
 

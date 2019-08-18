@@ -14,10 +14,11 @@ class DB(object):
         
         if self.dbLocation == 'local':
             self.host   = 'localhost'
-            self.user   = 'root'
-            self.pw     = 'password'
-            self.dbName = 'ResultsDB'
-
+            self.user   = Configs().get('dbUser')
+            self.pw     = Configs().get('dbPassword')
+            self.dbName = Configs().get('dbName')
+        else:
+            raise Exception('Unknown MySQL Connect information!!!!\n')
         self._connect()
 
     def _connect(self):
