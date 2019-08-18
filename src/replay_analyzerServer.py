@@ -249,7 +249,7 @@ def main():
     configs.show_all()
     
     db = DB.DB()
-    
+    print('Starting server. Configs: '+str(configs))
     LOG_ACTION(logger, 'Starting server. Configs: '+str(configs), doPrint=False)
     
     p = multiprocessing.Process(target=jobDispatcher, args=(POSTq,), kwargs={'processes':configs.get('ANALprocesses')})
@@ -262,7 +262,7 @@ def main():
                             'debug': True,
                             }
     
-    application.listen(configs.get('analyzerPort'))
+    application.listen(configs.get('analyzerPort'),address="0.0.0.0")
     
     tornado.ioloop.IOLoop.instance().start()
 
