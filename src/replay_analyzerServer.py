@@ -252,7 +252,7 @@ def main():
     configs.show_all()
     
     db = DB.DB()
-    print('Starting server. Configs: '+str(configs))
+    #print('Starting server. Configs: '+str(configs))
     LOG_ACTION(logger, 'Starting server. Configs: '+str(configs), doPrint=False)
     
     p = multiprocessing.Process(target=jobDispatcher, args=(POSTq,), kwargs={'processes':configs.get('ANALprocesses')})
@@ -262,7 +262,7 @@ def main():
                                            ])
     
     application.settings = {'GETpool'  : multiprocessing.Pool(processes=configs.get('GETprocesses')),
-                            'debug': True,
+                            'debug': False,
                             }
     
     application.listen(configs.get('analyzerPort'),address="0.0.0.0")
