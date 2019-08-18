@@ -8,10 +8,28 @@ Only supports linux machine so far.
 Before running:
 
 * Install Scapy http://www.secdev.org/projects/scapy/
+```
+pip2 install --pre scapy[basic]
+```
 
 * Install NetfilterQueue https://pypi.python.org/pypi/NetfilterQueue
+```
+apt-get install build-essential python-dev libnetfilter-queue-dev
+pip2 install NetfliterQueue
+```
 
 * Install Wireshark and tshark
+
+```
+sudo apt-get install wireshark tshark
+```
+
+* Install Numpy1.6
+```
+pip2 install numpy==1.6
+```
+
+* Install po
 
 * Have your own replay server ready (different machine than the client machine in order for your traffic to travel through the tested network). Then in python_lib.py, add your own server name and IP address pair in the class Instance (e.g. server1 and 1.2.3.4).
 
