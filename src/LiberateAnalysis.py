@@ -575,7 +575,7 @@ def GetTTL(PcapDirectory, Classi_Origin, Keywords, Protocol, PreNum, PreLen, Ana
 
 def setUpConfig(configs):
     configs.set('ask4analysis'     , False)
-    configs.set('analyzerPort'     , 80)
+    configs.set('analyzerPort'     , 56565)
     configs.set('byExternal', True)
     configs.set('testID', '-1')
     configs.set('areaThreshold', 0.1)
