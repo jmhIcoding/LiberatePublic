@@ -601,7 +601,7 @@ def main(args):
     # All the configurations used
     configs = Configs()
     configs = setUpConfig(configs)
-    
+
 
     if args == []:
         configs.read_args(sys.argv)
@@ -631,7 +631,7 @@ def main(args):
         client_ip = c.readline().split('\n')[0]
 
     permaData = PermaData()
-    permaData.updateHistoryCount()
+    #permaData.updateHistoryCount()
     analyzerI = AnalyzerI(configs.get('serverInstanceIP'), configs.get('analyzerPort'))
 
     # STEP 1
