@@ -32,6 +32,7 @@ class DB(object):
         #The following ping reconnects if connection has timed out 
         #(i.e. idle for more than wait_timeout which is a system variable of MySQL)
         self.conn.ping(True)
+        print(query)
         self.cursor.execute(query)
         self.conn.commit()
     
