@@ -147,8 +147,10 @@ def getHandler(args):
             # give flexibility in setting parameters
             print(type(db))
             print(userID,historyCount,testID)
-
-            response = db.getSingleResult(userID, historyCount, testID)
+            if type(db) == DB:
+                response = db.getSingleResult(userID, historyCount)
+            else:
+                response = db.getSingleResult(userID, historyCount, testID)
             # response = processResult(response)
             # Should only be one result since unique (userID, historyCount, testID)
             return json.dumps({'success':True, 'response':response[0]}, cls=myJsonEncoder)
