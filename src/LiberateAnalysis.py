@@ -601,7 +601,7 @@ def main(args):
     # All the configurations used
     configs = Configs()
     configs = setUpConfig(configs)
-    configs = Configs()
+    
 
     if args == []:
         configs.read_args(sys.argv)
